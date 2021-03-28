@@ -18,7 +18,6 @@ const HomePage = ({ navigation }: any) => {
       setIsLoading(true);
 
       const result = await TMDB.get('/genre/movie/list');
-      console.log(result);
 
       setGenres(shuffle(result.data.genres).slice(0, 10));
       setIsLoading(false);
@@ -28,8 +27,6 @@ const HomePage = ({ navigation }: any) => {
   }, []);
 
   function _columnGenres() {
-    console.log(genres?.length);
-
     return (<View>
       {genres == undefined ?
         <View></View>
@@ -50,6 +47,8 @@ const HomePage = ({ navigation }: any) => {
         {isLoading ? (
           <Text>Loading ...</Text>
         ) : _columnGenres()}
+
+        <View style={styles.spacerVertical} />
       </ScrollView>
     </View>
   );
